@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events | CamEvent Explorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="events">
+  <div id="loading-screen"><div class="loader"></div></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button id="mobileClose" class="mobile-toggle">✕</button>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="attractions.html">Attractions</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>CamEvent</span> Explorer</a>
+    <nav class="main-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="events.html">Events</a>
+      <a class="nav-link" href="attractions.html">Attractions</a>
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="darkToggle" class="dark-toggle"><span>Dark</span></button>
+      <a class="btn btn-secondary" href="login.html">Login</a>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Events Discovery</h2><p>Find the best Cambodian events by category, date or location.</p></div>
+      <div class="filter-bar">
+        <div class="tag-grid">
+          <button class="category-chip active" data-category="Festival">Festival</button>
+          <button class="category-chip active" data-category="Concert">Concert</button>
+          <button class="category-chip active" data-category="Food Fair">Food Fair</button>
+          <button class="category-chip active" data-category="Startup Event">Startup Event</button>
+          <button class="category-chip active" data-category="Cultural Event">Cultural Event</button>
+          <button class="category-chip active" data-category="Sports">Sports</button>
+        </div>
+        <div class="sort-bar">
+          <input id="eventsSearch" type="text" placeholder="Search events" />
+          <select id="sortEvents"><option value="featured">Featured</option><option value="date">Date</option><option value="price-asc">Price: Low to high</option><option value="price-desc">Price: High to low</option></select>
+        </div>
+      </div>
+      <div id="eventsGrid" class="events-grid"></div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Event Discovery Insights</h2><p>Every listing is designed for tourists who want a polished launch-ready experience.</p></div>
+      <div class="cards-grid">
+        <article class="metric-card"><strong>8</strong><p>Verified partners</p></article>
+        <article class="metric-card"><strong>96%</strong><p>Positive reviews</p></article>
+        <article class="metric-card"><strong>4.8</strong><p>Average rating</p></article>
+      </div>
+    </section>
+  </main>
+
+  <a class="fab" href="event-details.html?id=e1">🎟️</a>
+  <button id="backTop" class="back-top" aria-label="Back to top">↑</button>
+  <div class="modal" id="galleryModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><div class="modal-body"><h3>Gallery</h3><p>Preview event visuals before you book.</p></div></div></div>
+  <script src="script.js"></script>
+</body>
+</html>

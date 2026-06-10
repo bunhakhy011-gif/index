@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Details | CamEvent Explorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="event-details">
+  <div id="loading-screen"><div class="loader"></div></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button id="mobileClose" class="mobile-toggle">✕</button>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="attractions.html">Attractions</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>CamEvent</span> Explorer</a>
+    <nav class="main-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="events.html">Events</a>
+      <a class="nav-link" href="attractions.html">Attractions</a>
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="darkToggle" class="dark-toggle"><span>Dark</span></button>
+      <a class="btn btn-secondary" href="login.html">Login</a>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="detail-banner" id="detailBanner">
+      <div class="detail-banner-content">
+        <div class="banner-info">
+          <span class="hero-tag">Event spotlight</span>
+          <h1 id="detailTitle"></h1>
+          <div class="hero-meta" id="detailMeta"></div>
+          <div class="badge-list"><span>Premium</span><span>Verified</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-split">
+        <div>
+          <div class="section-title"><h2>Event overview</h2></div>
+          <p id="detailDescription"></p>
+          <div class="detail-card">
+            <h3>Organizer</h3>
+            <p id="detailOrganizer"></p>
+            <p id="detailDetails"></p>
+          </div>
+          <div class="detail-card">
+            <h3>Event schedule</h3>
+            <div id="eventSchedule" class="schedule-list"></div>
+          </div>
+          <div class="detail-card">
+            <h3>Photo gallery</h3>
+            <div id="galleryGrid" class="gallery-grid"></div>
+          </div>
+        </div>
+        <aside class="detail-sidebar">
+          <div class="booking-card">
+            <h3>Book now</h3>
+            <p class="body-small">Reserve your spot for the next Cambodia highlight.</p>
+            <div class="summary-row"><span>Starting price</span><strong id="ticketPrice"></strong></div>
+            <div class="summary-row"><span>Location</span><strong id="detailLocation">Phnom Penh</strong></div>
+            <a id="bookTicketLink" class="btn btn-primary" href="book.html">Book Ticket</a>
+            <button id="saveEventBtn" class="favorite-toggle" type="button">❤</button>
+          </div>
+          <div class="detail-card">
+            <h3>Related events</h3>
+            <div id="relatedEvents" class="related-list"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <a class="fab" href="book.html">🎟️</a>
+  <button id="backTop" class="back-top" aria-label="Back to top">↑</button>
+  <div class="modal" id="galleryModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><div class="modal-body"><h3>Gallery preview</h3><p>Experience the event atmosphere in a premium visual format.</p></div></div></div>
+  <script src="script.js"></script>
+</body>
+</html>

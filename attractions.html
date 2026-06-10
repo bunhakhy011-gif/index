@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attractions | CamEvent Explorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="attractions">
+  <div id="loading-screen"><div class="loader"></div></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button id="mobileClose" class="mobile-toggle">✕</button>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="attractions.html">Attractions</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>CamEvent</span> Explorer</a>
+    <nav class="main-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="events.html">Events</a>
+      <a class="nav-link" href="attractions.html">Attractions</a>
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="darkToggle" class="dark-toggle"><span>Dark</span></button>
+      <a class="btn btn-secondary" href="login.html">Login</a>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Attraction highlights</h2><p>Deep dive into Cambodia’s travel destinations with curated event pairings.</p></div>
+      <div class="attractions-grid" id="attractionGrid"></div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="feature-card"><h3>Interactive map mockup</h3><p>This isn’t real mapping data, but it gives the product the feel of a professional travel platform.</p></div>
+      <div class="map-card">
+        <div class="map-visual">
+          <div class="map-pin" style="top:20%; left:35%"></div>
+          <div class="map-pin" style="top:52%; left:65%"></div>
+          <div class="map-pin" style="top:82%; left:42%"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="fab" href="event-details.html?id=e3">🌍</a>
+  <button id="backTop" class="back-top" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
+</body>
+</html>

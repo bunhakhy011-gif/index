@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CamEvent Explorer | Discover Cambodia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="home">
+  <div id="loading-screen"><div class="loader"></div></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button id="mobileClose" class="mobile-toggle">✕</button>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="attractions.html">Attractions</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>CamEvent</span> Explorer</a>
+    <nav class="main-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="events.html">Events</a>
+      <a class="nav-link" href="attractions.html">Attractions</a>
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="darkToggle" class="dark-toggle"><span>Dark</span></button>
+      <a class="btn btn-secondary" href="login.html">Login</a>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy" data-reveal>
+          <span class="eyebrow">Discover Cambodia Beyond Angkor Wat</span>
+          <h1>Explore festivals, attractions, concerts, food fairs and local experiences all in one platform.</h1>
+          <p>CamEvent Explorer centralizes Cambodia’s best experiences into a premium discovery platform for tourists and adventurers.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="events.html">Explore Events</a>
+            <a class="btn btn-secondary" href="attractions.html">Explore Attractions</a>
+          </div>
+          <div class="search-panel" data-reveal>
+            <div class="search-grid">
+              <div style="position:relative;">
+                <input id="searchEvent" type="text" placeholder="Event Name" autocomplete="off" />
+                <div class="suggestions" id="searchSuggestions" style="display:none"></div>
+              </div>
+              <select id="searchLocation"><option value="">Location</option><option>Phnom Penh</option><option>Siem Reap</option><option>Koh Rong</option><option>Kampot</option><option>Mondulkiri</option></select>
+              <select id="searchCategory"><option value="">Category</option><option>Festival</option><option>Concert</option><option>Food Fair</option><option>Startup Event</option><option>Cultural Event</option><option>Sports</option></select>
+              <input id="searchDate" type="date" />
+              <button class="btn btn-primary search-button">Search</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card" data-reveal>
+          <div class="hero-slideshow">
+            <div class="slide slide-1"></div>
+            <div class="slide slide-2"></div>
+            <div class="slide slide-3"></div>
+          </div>
+          <div class="hero-visual-content">
+            <div class="hero-stats">
+              <div class="hero-stat"><strong>1200+</strong><span>Events</span></div>
+              <div class="hero-stat"><strong>500+</strong><span>Attractions</span></div>
+              <div class="hero-stat"><strong>25</strong><span>Provinces</span></div>
+            </div>
+            <div class="map-card">
+              <div class="map-visual">
+                <div class="map-pin" style="top:18%; left:26%"></div>
+                <div class="map-pin" style="top:42%; left:72%"></div>
+                <div class="map-pin" style="top:64%; left:38%"></div>
+                <div class="map-pin" style="top:76%; left:58%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Featured Events</h2><p>Browse the hottest Cambodian events handpicked for visitors.</p></div>
+      <div class="events-grid" id="featuredEvents"></div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Trending Attractions</h2><p>Explore iconic destinations with curated local experiences and event pairings.</p></div>
+      <div class="trending-list" id="trendingAttractions"></div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Platform Pulse</h2><p>Animated statistics that communicate scale and reliability.</p></div>
+      <div class="stats-row">
+        <div class="stat-card"><strong class="stat-count">0</strong><p>Events</p></div>
+        <div class="stat-card"><strong class="stat-count">0</strong><p>Attractions</p></div>
+        <div class="stat-card"><strong class="stat-count">0</strong><p>Users</p></div>
+        <div class="stat-card"><strong class="stat-count">0</strong><p>Provinces</p></div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Tourist Reviews</h2><p>Hear from travelers who loved discovering Cambodia through CamEvent Explorer.</p></div>
+      <div class="testimonial-card glass-card" id="testimonialCard"></div>
+      <div class="slider-controls">
+        <button id="testimonialPrev" class="btn btn-secondary">◀</button>
+        <button id="testimonialNext" class="btn btn-secondary">▶</button>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Futuristic Travel Planner</h2><p>Choose budget, travel days and interest to generate a smart Cambodia itinerary.</p></div>
+      <div class="section-split">
+        <div class="form-card glass-card">
+          <form id="plannerForm">
+            <div class="input-group"><label>Budget</label><select id="plannerBudget"><option>Balanced</option><option>Lean</option><option>Premium</option></select></div>
+            <div class="input-group"><label>Travel Days</label><input id="plannerDays" type="number" min="2" max="12" value="4" /></div>
+            <div class="input-group"><label>Interest</label><div class="tag-grid">
+                <button type="button" class="planner-chip active" data-interest="Culture">Culture</button>
+                <button type="button" class="planner-chip" data-interest="Food">Food</button>
+                <button type="button" class="planner-chip" data-interest="Adventure">Adventure</button>
+                <button type="button" class="planner-chip" data-interest="Wellness">Wellness</button>
+                <button type="button" class="planner-chip" data-interest="Luxury">Luxury</button>
+              </div></div>
+            <button class="btn btn-primary full-width">Generate itinerary</button>
+          </form>
+        </div>
+        <div class="detail-card glass-card" id="plannerResult">
+          <p class="body-small">Use the futuristic planner to reveal a tailored journey with mock itinerary output.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="fab" href="events.html">📍</a>
+  <button id="backTop" class="back-top" aria-label="Back to top">↑</button>
+  <div class="modal" id="galleryModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><div class="modal-body"><h3>Gallery</h3><p>Preview the visual concept for each event location.</p></div></div></div>
+  <script src="script.js"></script>
+</body>
+</html>

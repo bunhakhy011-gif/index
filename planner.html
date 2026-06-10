@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Travel Planner | Smart Itineraries</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-planner">
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="prototype1.html" data-fade>AI Travel Planner</a>
+      <nav class="nav-links">
+        <a href="prototype1.html" data-fade>Home</a>
+        <a href="planner.html" data-fade class="active">Planner</a>
+        <a href="insights.html" data-fade>Insights</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-slim gradient-glow">
+        <div class="hero-copy">
+          <span class="eyebrow">FUTURISTIC TRAVEL</span>
+          <h1>Plan the perfect trip in seconds.</h1>
+          <p>Choose your budget, travel days and interests. Our AI-inspired itinerary engine creates a premium adventure with immersive destinations, curated experiences, and polished investor-grade presentation.</p>
+          <a class="btn btn-primary" href="#planner-form">Start planning</a>
+        </div>
+        <div class="hero-visual glass-panel">
+          <div class="panel-badge">Future-ready design</div>
+          <div class="panel-content">
+            <p class="panel-title">Experience preview</p>
+            <div class="preview-line"><span>Destination:</span><strong>Tokyo</strong></div>
+            <div class="preview-line"><span>Focus:</span><strong>Food + Culture</strong></div>
+            <div class="preview-line"><span>Stay:</span><strong>5 days</strong></div>
+            <div class="preview-line"><span>Mode:</span><strong>Balanced</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="planner-form" class="panel grid-2">
+        <div class="panel-left glass-panel">
+          <h2>Build your itinerary</h2>
+          <p>Select the right profile and let the system generate a confident schedule for your next launch-ready travel idea.</p>
+
+          <form id="travelForm" class="form-grid">
+            <label>
+              Budget tier
+              <select id="budget" required>
+                <option value="Balanced">Balanced</option>
+                <option value="Lean">Lean</option>
+                <option value="Premium">Premium</option>
+              </select>
+            </label>
+
+            <label>
+              Travel days
+              <input id="days" type="number" min="2" max="12" value="4" required />
+            </label>
+
+            <fieldset class="interest-fieldset">
+              <legend>Interest</legend>
+              <button type="button" class="chip active" data-interest="Culture">Culture</button>
+              <button type="button" class="chip" data-interest="Adventure">Adventure</button>
+              <button type="button" class="chip" data-interest="Food">Food</button>
+              <button type="button" class="chip" data-interest="Wellness">Wellness</button>
+              <button type="button" class="chip" data-interest="Luxury">Luxury</button>
+            </fieldset>
+
+            <button type="submit" class="btn btn-secondary full-width">Generate itinerary</button>
+          </form>
+        </div>
+
+        <div class="panel-right output-panel glass-panel">
+          <div class="output-header">
+            <span class="eyebrow">Instant itinerary</span>
+            <h2>Live itinerary output</h2>
+          </div>
+          <div id="itineraryResult" class="itinerary-result">
+            <div class="empty-state">
+              <p>Select your travel style and hit generate to reveal your first itinerary.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-strip alternate">
+        <div>
+          <h3>Futuristic planning engine</h3>
+          <p>Our mock AI engine simulates high-end itinerary curation with persona-aware recommendations, smart pacing, and investor-ready storytelling.</p>
+        </div>
+        <div class="mini-grid">
+          <div class="stat-card">
+            <strong>99%</strong>
+            <p>Rapid iteration ready</p>
+          </div>
+          <div class="stat-card">
+            <strong>4.8/5</strong>
+            <p>Experience quality score</p>
+          </div>
+          <div class="stat-card">
+            <strong>0 External APIs</strong>
+            <p>Fully self-contained mock data</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <a class="fab" href="insights.html" data-fade>
+    <span class="fab-ring"></span>
+    <span class="fab-icon">📈</span>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>

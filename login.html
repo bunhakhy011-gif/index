@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | CamEvent Explorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="login">
+  <div id="loading-screen"><div class="loader"></div></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button id="mobileClose" class="mobile-toggle">✕</button>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="attractions.html">Attractions</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>CamEvent</span> Explorer</a>
+    <nav class="main-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="events.html">Events</a>
+      <a class="nav-link" href="attractions.html">Attractions</a>
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="darkToggle" class="dark-toggle"><span>Dark</span></button>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Login to CamEvent Explorer</h2><p>Access your dashboard, saved events and personalized recommendations.</p></div>
+      <div class="section-split">
+        <div class="form-card glass-card">
+          <form id="loginForm">
+            <div class="input-group"><label>Email</label><input id="loginEmail" type="email" placeholder="you@example.com" required /></div>
+            <div class="input-group"><label>Password</label><input id="loginPassword" type="password" placeholder="Enter password" required /></div>
+            <button class="btn btn-primary full-width">Login</button>
+          </form>
+        </div>
+        <div class="feature-card glass-card">
+          <h3>Need a quick access?</h3>
+          <p>This app simulates login with mock data. Use the button below to get started instantly.</p>
+          <button id="googleLogin" class="btn btn-secondary full-width">Continue with Google</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="fab" href="signup.html">🔐</a>
+  <button id="backTop" class="back-top" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
+</body>
+</html>
