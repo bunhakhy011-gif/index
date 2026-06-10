@@ -512,9 +512,21 @@ body.dark-mode .modal-content {
   font-weight: 600;
   font-size: 0.85rem;
 }
+.event-badge.badge-free {
+  background: #10b981;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
 body.dark-mode .event-badge,
 body.dark-mode .tag-pill {
   background: rgba(20, 184, 166, 0.12);
+}
+body.dark-mode .event-badge.badge-free {
+  background: #059669;
+  color: white;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.4);
 }
 .trending-list {
   display: grid;

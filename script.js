@@ -525,7 +525,7 @@ function renderEvents() {
           <div class="event-meta"><span>${event.location}</span><span>${event.date}</span><span>${event.time}</span></div>
           <div class="card-actions">
             <a class="btn btn-secondary" href="event-details.html?id=${event.id}">Details</a>
-            <span class="event-badge">${event.price === 0 ? 'FREE' : '$' + event.price}</span>
+            <span class="event-badge ${event.price === 0 ? 'badge-free' : ''}">${event.price === 0 ? 'FREE' : '$' + event.price}</span>
           </div>
         </div>
       </article>
