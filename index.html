@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CamEvent Explorer | Discover Cambodia</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body data-page="home">
   <div id="loading-screen"><div class="loader"></div></div>
@@ -77,12 +78,7 @@
       <div class="section-title"><h2>Nearby Events in Cambodia</h2><p>Detect your current Cambodia region and discover events close to you.</p></div>
       <div class="map-card">
         <div class="map-visual">
-          <div class="map-pin" data-location="Siem Reap" style="top:18%; left:26%"></div>
-          <div class="map-pin" data-location="Battambang" style="top:28%; left:34%"></div>
-          <div class="map-pin" data-location="Phnom Penh" style="top:48%; left:66%"></div>
-          <div class="map-pin" data-location="Mondulkiri" style="top:46%; left:86%"></div>
-          <div class="map-pin" data-location="Kampot" style="top:72%; left:40%"></div>
-          <div class="map-pin" data-location="Koh Rong" style="top:80%; left:54%"></div>
+          <div id="leafletMap"></div>
         </div>
         <div class="map-info">
           <button id="locateButton" class="btn btn-primary full-width">Find nearby events</button>
@@ -151,5 +147,71 @@
   <button id="backTop" class="back-top" aria-label="Back to top">↑</button>
   <div class="modal" id="galleryModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><div class="modal-body"><h3>Gallery</h3><p>Preview the visual concept for each event location.</p></div></div></div>
   <script src="script.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script>
+    (function initLeaflet() {
+      if (!document.getElementById('leafletMap')) return;
+      // create map centered on Cambodia
+      const map = L.map('leafletMap').setView([12.5657, 104.9910], 7);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // place event markers using region centers when available
+      const eventMarkers = [];
+      (siteData.events || []).forEach(ev => {
+        const loc = ev.location;
+        const center = (typeof regionLocationCenters !== 'undefined') ? regionLocationCenters[loc] : null;
+        if (center) {
+          const m = L.marker(center).addTo(map).bindPopup(`🎫 ${ev.name} — ${ev.location}`);
+          eventMarkers.push(m);
+        }
+      });
+
+      // geolocation: mark user and highlight nearby events within 50km
+      function highlightNearby(userLat, userLng) {
+        const nearby = [];
+        (siteData.events || []).forEach(ev => {
+          const center = regionLocationCenters[ev.location];
+          if (!center) return;
+          const d = getDistance(userLat, userLng, center[0], center[1]);
+          if (d <= 50) {
+            nearby.push(ev);
+            L.circle([center[0], center[1]], { color: 'green', radius: 8000 }).addTo(map);
+          }
+        });
+        const list = document.querySelector('#nearbyEventsList');
+        if (!list) return;
+        if (!nearby.length) {
+          list.innerHTML = `<div class="nearby-event"><strong>No nearby events found</strong><p class="body-small">Try widening your search or checking other cities.</p></div>`;
+        } else {
+          list.innerHTML = nearby.map(ev => `\n            <div class="nearby-event">\n              <strong>${ev.name}</strong>\n              <p class="body-small">${ev.date} • ${ev.time}</p>\n              <p class="body-small">${ev.details}</p>\n            </div>\n          `).join('');
+        }
+      }
+
+      const locateButton = document.querySelector('#locateButton');
+      const status = document.querySelector('#locationStatus');
+      if (locateButton) {
+        locateButton.addEventListener('click', () => {
+          if (!navigator.geolocation) {
+            status.textContent = 'Geolocation not supported in this browser.';
+            return;
+          }
+          status.textContent = 'Detecting your location...';
+          navigator.geolocation.getCurrentPosition(pos => {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            L.marker([lat, lng], { title: 'You' }).addTo(map).bindPopup('📍 You are here').openPopup();
+            map.setView([lat, lng], 11);
+            status.textContent = `Detected location (approx): ${lat.toFixed(3)}, ${lng.toFixed(3)}`;
+            highlightNearby(lat, lng);
+          }, err => {
+            status.textContent = 'Location access denied or unavailable.';
+          }, { timeout: 10000 });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
