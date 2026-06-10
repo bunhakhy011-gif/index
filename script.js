@@ -74,6 +74,10 @@ window.addEventListener('DOMContentLoaded', () => {
   initToastContainer();
   renderPage();
   initScrollAnimations();
+  // register service worker for offline support
+  registerServiceWorker();
+  // restore any reminders set previously
+  processSavedReminders();
 });
 
 function initLoadingScreen() {
@@ -184,6 +188,7 @@ function renderHome() {
   renderTravelPlanner();
   bindHomeSearch();
   bindNearbyMap();
+  renderRecommendations();
 }
 
 function bindNearbyMap() {
@@ -436,7 +441,7 @@ function bindHomeSearch() {
   if (!searchInput || !suggestionBox) return;
   searchInput.addEventListener('input', () => {
     const value = searchInput.value.toLowerCase().trim();
-    const matches = siteData.events.filter(event => event.name.toLowerCase().includes(value)).slice(0, 5);
+    const matches = fuzzySearch(value, siteData.events).slice(0, 5);
     suggestionBox.innerHTML = matches.map(match => `<button type="button" data-value="${match.name}">${match.name}</button>`).join('');
     suggestionBox.style.display = matches.length ? 'block' : 'none';
     suggestionBox.querySelectorAll('button').forEach(button => {
@@ -502,7 +507,7 @@ function renderEvents() {
       events = events.filter(event => activeFilters.has(event.category));
     }
     if (query) {
-      events = events.filter(event => event.name.toLowerCase().includes(query) || event.location.toLowerCase().includes(query));
+      events = fuzzySearch(query, events);
     }
     if (sort === 'price-asc') events.sort((a,b) => a.price - b.price);
     if (sort === 'price-desc') events.sort((a,b) => b.price - a.price);
@@ -820,3 +825,128 @@ function initScrollAnimations() {
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeModal();
 });
+
+/* ======= Additional features: calendar export, reminders, fuzzy search, recommendations, service worker ======= */
+
+function generateICS(eventObj) {
+  // Basic .ics file content
+  const startDate = (eventObj.date || '').replace(/-/g, '') + 'T' + (eventObj.time || '00:00').replace(':','') + '00';
+  const uid = `cam-${eventObj.id}-${Date.now()}`;
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//CamEvent Explorer//EN',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${startDate}`,
+    `DTSTART:${startDate}`,
+    `SUMMARY:${eventObj.name}`,
+    `DESCRIPTION:${eventObj.details}`,
+    `LOCATION:${eventObj.location}`,
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+  return new Blob([ics], { type: 'text/calendar' });
+}
+
+function downloadICS(eventObj) {
+  const blob = generateICS(eventObj);
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${eventObj.name.replace(/\s+/g,'_')}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function addReminder(eventId, minutesBefore = 60) {
+  const ev = siteData.events.find(e => e.id === eventId);
+  if (!ev) return showToast('Reminder failed', 'Event not found');
+  const start = new Date(ev.date + 'T' + (ev.time || '00:00'));
+  const trigger = new Date(start.getTime() - minutesBefore * 60000);
+  const reminders = JSON.parse(localStorage.getItem('cam_reminders') || '[]');
+  reminders.push({ id: eventId, at: trigger.getTime() });
+  localStorage.setItem('cam_reminders', JSON.stringify(reminders));
+  scheduleReminderTimers();
+  showToast('Reminder set', `We will notify you ${minutesBefore} minutes before ${ev.name}`);
+}
+
+function scheduleReminderTimers() {
+  const reminders = JSON.parse(localStorage.getItem('cam_reminders') || '[]');
+  const now = Date.now();
+  reminders.forEach(r => {
+    const ms = r.at - now;
+    if (ms > 0) {
+      setTimeout(() => {
+        const ev = siteData.events.find(e => e.id === r.id);
+        if (!ev) return;
+        // show notification if permitted
+        if (Notification && Notification.permission === 'granted') {
+          new Notification('Event reminder', { body: `${ev.name} starts at ${ev.time} • ${ev.location}` });
+        } else {
+          showToast('Reminder', `${ev.name} starts at ${ev.time}`);
+        }
+      }, ms);
+    }
+  });
+}
+
+function processSavedReminders() {
+  if ('Notification' in window && Notification.permission !== 'granted') {
+    // ask permission softly
+    Notification.requestPermission();
+  }
+  scheduleReminderTimers();
+}
+
+function fuzzySearch(query, list) {
+  if (!query) return list.slice();
+  const q = query.toLowerCase();
+  // score by occurrences and startsWith
+  return list.map(item => {
+    const name = (item.name || '').toLowerCase();
+    const loc = (item.location || '').toLowerCase();
+    let score = 0;
+    if (name.includes(q)) score += 40;
+    if (loc.includes(q)) score += 20;
+    if (name.startsWith(q)) score += 20;
+    // simple character overlap
+    const overlap = q.split('').filter(c => name.includes(c)).length;
+    score += overlap;
+    return { item, score };
+  }).filter(x => x.score > 0).sort((a,b) => b.score - a.score).map(x => x.item);
+}
+
+function renderRecommendations() {
+  const container = document.querySelector('#recommendedList');
+  if (!container) return;
+  // basic personalization: based on saved events' categories, else top-rated
+  const saved = state.savedEvents.slice();
+  let picks = [];
+  if (saved.length) {
+    const savedCats = saved.map(id => siteData.events.find(e => e.id === id)?.category).filter(Boolean);
+    picks = siteData.events.filter(e => savedCats.includes(e.category) && !saved.includes(e.id));
+  }
+  if (!picks.length) picks = siteData.events.slice().sort((a,b) => b.rating - a.rating).slice(0,4);
+  container.innerHTML = picks.map(e => `
+    <article class="event-card">
+      <div class="card-hero overlay" style="background: ${e.banner};"></div>
+      <div class="card-body">
+        <h3 class="card-title">${e.name}</h3>
+        <div class="card-meta"><span>${e.date}</span><span>${e.location}</span></div>
+        <div class="card-actions"><a class="btn btn-primary" href="event-details.html?id=${e.id}">View</a></div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(() => {
+      console.log('Service worker registered');
+    }).catch(() => console.log('Service worker registration failed'));
+  }
+}
+

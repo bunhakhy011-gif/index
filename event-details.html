@@ -70,6 +70,8 @@
             <div class="summary-row"><span>Location</span><strong id="detailLocation">Phnom Penh</strong></div>
             <a id="bookTicketLink" class="btn btn-primary" href="book.html">Book Ticket</a>
             <button id="saveEventBtn" class="favorite-toggle" type="button">❤</button>
+            <button id="addCalendarBtn" class="btn btn-secondary" type="button">Add to Calendar</button>
+            <button id="setReminderBtn" class="btn btn-secondary" type="button">Set Reminder</button>
           </div>
           <div class="detail-card">
             <h3>Related events</h3>
@@ -84,5 +86,23 @@
   <button id="backTop" class="back-top" aria-label="Back to top">↑</button>
   <div class="modal" id="galleryModal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">✕</button><div class="modal-body"><h3>Gallery preview</h3><p>Experience the event atmosphere in a premium visual format.</p></div></div></div>
   <script src="script.js"></script>
+  <script>
+    // wire calendar + reminder buttons on details page
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id') || 'e1';
+      document.querySelector('#addCalendarBtn')?.addEventListener('click', () => {
+        const ev = siteData.events.find(e => e.id === id);
+        if (ev) downloadICS(ev);
+      });
+      document.querySelector('#setReminderBtn')?.addEventListener('click', () => {
+        const ev = siteData.events.find(e => e.id === id);
+        if (!ev) return;
+        // ask user for a minutes-before (simple prompt for demo)
+        const mins = Number(prompt('Notify me how many minutes before the event? (e.g., 60)', '60')) || 60;
+        addReminder(id, mins);
+      });
+    });
+  </script>
 </body>
 </html>
