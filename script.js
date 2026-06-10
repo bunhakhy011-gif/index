@@ -189,7 +189,9 @@ function renderHome() {
   bindHomeSearch();
   bindNearbyMap();
   renderRecommendations();
+  loadSimulatedEvents();
   renderUpcomingEvents();
+  bindLiveControls();
   startLiveSimulator();
 }
 
@@ -961,8 +963,10 @@ function renderUpcomingEvents() {
   `).join('');
 }
 
-// Live simulator: creates a mock event every 18 seconds to showcase live updates
+// Live simulator: creates a mock event every N seconds to showcase live updates
 let liveSimulatorTimer = null;
+let livePaused = false;
+
 function startLiveSimulator(intervalSeconds = 18) {
   if (liveSimulatorTimer) return;
   liveSimulatorTimer = setInterval(() => {
@@ -972,7 +976,14 @@ function startLiveSimulator(intervalSeconds = 18) {
     renderFeaturedEvents();
     renderRecommendations();
     showToast('New event live', `${newEvent.name} in ${newEvent.location}`);
+    saveSimulatedEvent(newEvent);
   }, intervalSeconds * 1000);
+}
+
+function stopLiveSimulator() {
+  if (!liveSimulatorTimer) return;
+  clearInterval(liveSimulatorTimer);
+  liveSimulatorTimer = null;
 }
 
 function makeMockEvent() {
@@ -983,7 +994,65 @@ function makeMockEvent() {
   const name = names[Math.floor(Math.random() * names.length)];
   const date = new Date(Date.now() + Math.floor(Math.random()*10+1)*24*3600*1000);
   const isoDate = date.toISOString().split('T')[0];
-  return { id, name: `${name} (${loc})`, category: 'Live', location: loc, date: isoDate, time: '18:00', price: 0, rating: 4.3, attendees: 0, details: 'This is a live-simulated event for demonstration purposes.', organizer: 'CamEvent Live', banner: 'linear-gradient(135deg, rgba(15,118,110,0.8), rgba(20,184,166,0.4))', gallery: [], tags: ['Live','Featured'] };
+  return { id, name: `${name} (${loc})`, category: 'Live', location: loc, date: isoDate, time: '18:00', price: 0, rating: 4.3, attendees: 0, details: 'This is a live-simulated event for demonstration purposes.', organizer: 'CamEvent Live', banner: 'linear-gradient(135deg, rgba(15,118,110,0.8), rgba(20,184,166,0.4))', gallery: [], tags: ['Live','Featured'], _simulated: true };
+}
+
+// Persist simulated events separately so demo history survives reloads
+function loadSimulatedEvents() {
+  try {
+    const raw = localStorage.getItem('cam_sim_events');
+    if (!raw) return;
+    const sims = JSON.parse(raw);
+    if (!Array.isArray(sims) || sims.length === 0) return;
+    // prepend simulated events if not already present
+    sims.reverse().forEach(ev => {
+      if (!siteData.events.find(e => e.id === ev.id)) siteData.events.unshift(ev);
+    });
+  } catch (e) { console.warn('Failed to load simulated events', e); }
+}
+
+function saveSimulatedEvent(ev) {
+  try {
+    const raw = localStorage.getItem('cam_sim_events');
+    const arr = raw ? JSON.parse(raw) : [];
+    arr.push(ev);
+    const trimmed = arr.slice(-50);
+    localStorage.setItem('cam_sim_events', JSON.stringify(trimmed));
+  } catch (e) { console.warn('Failed to save simulated event', e); }
+}
+
+function clearSimulatedEvents() {
+  localStorage.removeItem('cam_sim_events');
+}
+
+function bindLiveControls() {
+  const toggle = document.getElementById('liveToggle');
+  const intervalInput = document.getElementById('liveInterval');
+  const clearBtn = document.getElementById('clearSim');
+  if (!toggle || !intervalInput) return;
+  toggle.addEventListener('click', () => {
+    livePaused = !livePaused;
+    if (livePaused) {
+      stopLiveSimulator();
+      toggle.textContent = 'Resume Live';
+    } else {
+      startLiveSimulator(Number(intervalInput.value) || 18);
+      toggle.textContent = 'Pause Live';
+    }
+  });
+  intervalInput.addEventListener('change', () => {
+    const val = Number(intervalInput.value) || 18;
+    if (!livePaused) {
+      stopLiveSimulator();
+      startLiveSimulator(val);
+    }
+  });
+  clearBtn?.addEventListener('click', () => {
+    clearSimulatedEvents();
+    siteData.events = siteData.events.filter(e => !e._simulated);
+    renderUpcomingEvents();
+    renderFeaturedEvents();
+  });
 }
 
 

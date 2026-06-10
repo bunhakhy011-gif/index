@@ -97,6 +97,11 @@
 
     <section class="section" data-reveal>
       <div class="section-title"><h2>Upcoming (Live)</h2><p>Live-updating upcoming events — shows new events as they appear.</p></div>
+      <div class="detail-card glass-card" id="upcomingControls" style="margin-bottom:12px;display:flex;gap:8px;align-items:center;">
+        <button id="liveToggle" class="btn">Pause Live</button>
+        <label style="font-size:0.9rem;color:var(--muted);">Interval (s): <input id="liveInterval" type="number" min="5" value="18" style="width:64px;margin-left:6px;"></label>
+        <button id="clearSim" class="btn btn-secondary">Clear Simulated</button>
+      </div>
       <div id="upcomingLive" class="events-grid"></div>
     </section>
 
