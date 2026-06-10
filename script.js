@@ -55,6 +55,15 @@ const state = {
   plannerInterest: 'Culture'
 };
 
+const regionLocationCenters = {
+  'Phnom Penh': [11.5564, 104.9282],
+  'Siem Reap': [13.3611, 103.8599],
+  'Koh Rong': [10.6260, 103.2168],
+  'Kampot': [10.6161, 104.1810],
+  'Mondulkiri': [12.4387, 107.1839],
+  'Battambang': [13.0995, 103.2040]
+};
+
 window.addEventListener('DOMContentLoaded', () => {
   initLoadingScreen();
   initTheme();
@@ -174,6 +183,93 @@ function renderHome() {
   renderTestimonials();
   renderTravelPlanner();
   bindHomeSearch();
+  bindNearbyMap();
+}
+
+function bindNearbyMap() {
+  const locateButton = document.querySelector('#locateButton');
+  const locationStatus = document.querySelector('#locationStatus');
+  const locationSelect = document.querySelector('#searchLocation');
+
+  if (locateButton) {
+    locateButton.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        locationStatus.textContent = 'Geolocation is not available in this browser.';
+        return;
+      }
+      locationStatus.textContent = 'Detecting your Cambodia location…';
+      navigator.geolocation.getCurrentPosition((position) => {
+        const region = resolveRegionFromCoords(position.coords.latitude, position.coords.longitude);
+        locationStatus.textContent = `Detected location: ${region}`;
+        renderNearbyEvents(region);
+      }, () => {
+        locationStatus.textContent = 'Location permission denied or unavailable.';
+        showToast('Location unavailable', 'Allow location access or choose a location manually.');
+      }, { timeout: 10000, maximumAge: 60000 });
+    });
+  }
+
+  locationSelect?.addEventListener('change', () => {
+    if (locationSelect.value) {
+      const region = locationSelect.value;
+      locationStatus.textContent = `Showing events for ${region}`;
+      renderNearbyEvents(region);
+    }
+  });
+}
+
+function resolveRegionFromCoords(lat, lon) {
+  let nearest = null;
+  let bestDistance = Infinity;
+  Object.entries(regionLocationCenters).forEach(([region, [rlat, rlon]]) => {
+    const distance = getDistance(lat, lon, rlat, rlon);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      nearest = region;
+    }
+  });
+  return nearest || 'Phnom Penh';
+}
+
+function getDistance(lat1, lon1, lat2, lon2) {
+  const toRad = (value) => value * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return 6371 * c;
+}
+
+function renderNearbyEvents(region) {
+  const list = document.querySelector('#nearbyEventsList');
+  const locationStatus = document.querySelector('#locationStatus');
+  if (!list || !locationStatus) return;
+  const matches = siteData.events.filter(event => event.location === region);
+  setMapPinHighlights(region);
+
+  if (!matches.length) {
+    list.innerHTML = `
+      <div class="nearby-event">
+        <strong>No nearby events found</strong>
+        <p class="body-small">We couldn’t find active events in ${region}. Try Phnom Penh, Siem Reap, or Kampot for more options.</p>
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = matches.map(event => `
+    <div class="nearby-event">
+      <strong>${event.name}</strong>
+      <p class="body-small">${event.date} • ${event.time}</p>
+      <p class="body-small">${event.details}</p>
+    </div>
+  `).join('');
+}
+
+function setMapPinHighlights(region) {
+  document.querySelectorAll('.map-pin').forEach(pin => {
+    pin.classList.toggle('active', pin.dataset.location === region);
+  });
 }
 
 function renderHeroSlides() {

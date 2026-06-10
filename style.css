@@ -619,9 +619,14 @@ body.dark-mode .slider-controls button {
   padding: 28px;
 }
 .map-card {
-  min-height: 360px;
+  min-height: 420px;
   position: relative;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 24px;
+  padding: 24px;
+  align-items: stretch;
 }
 .map-card::before {
   content: '';
@@ -632,11 +637,23 @@ body.dark-mode .slider-controls button {
 }
 .map-visual {
   position: relative;
-  min-height: 100%;
+  min-height: 320px;
+  padding: 18px;
   border-radius: 28px;
-  background: radial-gradient(circle at 30% 22%, rgba(20, 184, 166, 0.14), transparent 16%),
-              radial-gradient(circle at 80% 60%, rgba(245, 158, 11, 0.12), transparent 18%),
-              linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(248, 250, 252, 0.95));
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.16), rgba(20, 184, 166, 0.09)),
+              radial-gradient(circle at 30% 22%, rgba(20, 184, 166, 0.14), transparent 16%),
+              radial-gradient(circle at 80% 60%, rgba(245, 158, 11, 0.12), transparent 18%);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+}
+.map-visual::before {
+  content: 'CAMBODIA';
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.83rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 .map-visual::after {
   content: '';
@@ -648,11 +665,12 @@ body.dark-mode .slider-controls button {
 }
 .map-pin {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 16px rgba(245, 158, 11, 0.28);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 .map-pin::after {
   content: '';
@@ -660,6 +678,47 @@ body.dark-mode .slider-controls button {
   inset: 4px;
   border-radius: 50%;
   background: #fff;
+}
+.map-pin.active {
+  background: var(--secondary);
+  box-shadow: 0 0 24px rgba(20, 184, 166, 0.45);
+  transform: scale(1.4);
+}
+.map-info {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+  padding: 18px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+}
+body.dark-mode .map-info {
+  background: rgba(4, 17, 43, 0.92);
+}
+.map-info p {
+  margin: 0;
+  color: var(--muted);
+}
+.nearby-list {
+  display: grid;
+  gap: 12px;
+}
+.nearby-event {
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--border);
+}
+body.dark-mode .nearby-event {
+  background: rgba(4, 17, 43, 0.9);
+}
+.nearby-event strong {
+  display: block;
+  margin-bottom: 8px;
+}
+.full-width {
+  width: 100%;
 }
 .input-group {
   display: grid;

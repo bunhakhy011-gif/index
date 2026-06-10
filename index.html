@@ -68,14 +68,27 @@
               <div class="hero-stat"><strong>500+</strong><span>Attractions</span></div>
               <div class="hero-stat"><strong>25</strong><span>Provinces</span></div>
             </div>
-            <div class="map-card">
-              <div class="map-visual">
-                <div class="map-pin" style="top:18%; left:26%"></div>
-                <div class="map-pin" style="top:42%; left:72%"></div>
-                <div class="map-pin" style="top:64%; left:38%"></div>
-                <div class="map-pin" style="top:76%; left:58%"></div>
-              </div>
-            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Nearby Events in Cambodia</h2><p>Detect your current Cambodia region and discover events close to you.</p></div>
+      <div class="map-card">
+        <div class="map-visual">
+          <div class="map-pin" data-location="Siem Reap" style="top:18%; left:26%"></div>
+          <div class="map-pin" data-location="Battambang" style="top:28%; left:34%"></div>
+          <div class="map-pin" data-location="Phnom Penh" style="top:48%; left:66%"></div>
+          <div class="map-pin" data-location="Mondulkiri" style="top:46%; left:86%"></div>
+          <div class="map-pin" data-location="Kampot" style="top:72%; left:40%"></div>
+          <div class="map-pin" data-location="Koh Rong" style="top:80%; left:54%"></div>
+        </div>
+        <div class="map-info">
+          <button id="locateButton" class="btn btn-primary full-width">Find nearby events</button>
+          <p id="locationStatus" class="body-small">Tap the button to detect your Cambodia location and surface the closest events.</p>
+          <div id="nearbyEventsList" class="nearby-list">
+            <p class="body-small">No location detected yet. Use the button above or select a location from the search filters.</p>
           </div>
         </div>
       </div>
