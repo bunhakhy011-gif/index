@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CamEvent Explorer | Discover Cambodia</title>
+  <title>EventHub Explorer | Discover Cambodia</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
@@ -18,7 +18,7 @@
     <a href="signup.html">Sign Up</a>
   </div>
   <header class="site-header">
-    <a class="brand" href="index.html"><span>CamEvent</span> Explorer</a>
+    <a class="brand" href="index.html"><span>EventHub</span> Explorer</a>
     <nav class="main-nav">
       <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="events.html">Events</a>
@@ -38,7 +38,7 @@
         <div class="hero-copy" data-reveal>
           <span class="eyebrow">Discover Cambodia Beyond Angkor Wat</span>
           <h1>Explore festivals, attractions, concerts, food fairs and local experiences all in one platform.</h1>
-          <p>CamEvent Explorer centralizes Cambodia’s best experiences into a premium discovery platform for tourists and adventurers.</p>
+          <p>EventHub Explorer centralizes Cambodia’s best experiences into a premium discovery platform for tourists and adventurers.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="events.html">Explore Events</a>
             <a class="btn btn-secondary" href="attractions.html">Explore Attractions</a>
@@ -93,6 +93,11 @@
     <section class="section" data-reveal>
       <div class="section-title"><h2>Recommended For You</h2><p>Personalized event picks based on your activity and preferences.</p></div>
       <div id="recommendedList" class="events-grid"></div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-title"><h2>Upcoming (Live)</h2><p>Live-updating upcoming events — shows new events as they appear.</p></div>
+      <div id="upcomingLive" class="events-grid"></div>
     </section>
 
     <section class="section" data-reveal>

@@ -189,6 +189,8 @@ function renderHome() {
   bindHomeSearch();
   bindNearbyMap();
   renderRecommendations();
+  renderUpcomingEvents();
+  startLiveSimulator();
 }
 
 function bindNearbyMap() {
@@ -941,6 +943,49 @@ function renderRecommendations() {
     </article>
   `).join('');
 }
+
+function renderUpcomingEvents() {
+  const container = document.querySelector('#upcomingLive');
+  if (!container) return;
+  // upcoming = events sorted by date ascending
+  const upcoming = siteData.events.slice().sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0,6);
+  container.innerHTML = upcoming.map(e => `
+    <article class="event-card">
+      <div class="card-hero overlay" style="background: ${e.banner};"></div>
+      <div class="card-body">
+        <h3 class="card-title">${e.name}</h3>
+        <div class="card-meta"><span>${e.date}</span><span>${e.location}</span></div>
+        <div class="card-actions"><a class="btn btn-primary" href="event-details.html?id=${e.id}">Details</a></div>
+      </div>
+    </article>
+  `).join('');
+}
+
+// Live simulator: creates a mock event every 18 seconds to showcase live updates
+let liveSimulatorTimer = null;
+function startLiveSimulator(intervalSeconds = 18) {
+  if (liveSimulatorTimer) return;
+  liveSimulatorTimer = setInterval(() => {
+    const newEvent = makeMockEvent();
+    siteData.events.unshift(newEvent);
+    renderUpcomingEvents();
+    renderFeaturedEvents();
+    renderRecommendations();
+    showToast('New event live', `${newEvent.name} in ${newEvent.location}`);
+  }, intervalSeconds * 1000);
+}
+
+function makeMockEvent() {
+  const id = `mx${Math.floor(Math.random()*9000)+1000}`;
+  const locs = Object.keys(regionLocationCenters);
+  const loc = locs[Math.floor(Math.random() * locs.length)];
+  const names = ['Sunset Beats', 'River Food Night', 'Art & Film Pop-up', 'Startup Pitch Night', 'Local Market Fair'];
+  const name = names[Math.floor(Math.random() * names.length)];
+  const date = new Date(Date.now() + Math.floor(Math.random()*10+1)*24*3600*1000);
+  const isoDate = date.toISOString().split('T')[0];
+  return { id, name: `${name} (${loc})`, category: 'Live', location: loc, date: isoDate, time: '18:00', price: 0, rating: 4.3, attendees: 0, details: 'This is a live-simulated event for demonstration purposes.', organizer: 'CamEvent Live', banner: 'linear-gradient(135deg, rgba(15,118,110,0.8), rgba(20,184,166,0.4))', gallery: [], tags: ['Live','Featured'] };
+}
+
 
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
