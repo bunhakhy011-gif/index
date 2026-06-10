@@ -2,7 +2,7 @@ const siteData = {
   events: [
     { id: 'e1', name: 'Phnom Penh Night Festival', category: 'Festival', location: 'Phnom Penh', date: '2026-07-08', time: '18:00', price: 0, rating: 4.8, attendees: 3200, details: 'A vibrant open-air event with live performances, street food, and cultural showcases in the heart of Phnom Penh. FREE EVENT!', organizer: 'City Stages', banner: 'image/Lantern-boats-dazzle-for-Water-Festival-in-Phnom-Penh.jpg', gallery: ['image/Lantern-boats-dazzle-for-Water-Festival-in-Phnom-Penh.jpg', 'image/Lantern-boats-dazzle-for-Water-Festival-in-Phnom-Penh.jpg', 'https://images.unsplash.com/photo-1555939594-58d7cb561404?w=400&q=80'], tags: ['Festival', 'Cultural', 'Food'] },
     { id: 'e2', name: 'Angkor Sound Concert', category: 'Concert', location: 'Siem Reap', date: '2026-08-12', time: '20:00', price: 55, rating: 4.9, attendees: 2200, details: 'A premium outdoor concert featuring Cambodia’s top artists and a cinematic light show near Angkor Wat.', organizer: 'Temple Nights', banner: 'image/SmileofAngkorinSiemReap.jpg', gallery: ['image/smile-of-angkor-show.jpg', 'image/smile-of-angkor-show.jpg', 'image/smile-of-angkor-show.jpg'], tags: ['Concert', 'Luxury', 'Music'] },
-    { id: 'e3', name: 'Koh Rong Food Fair', category: 'Food Fair', location: 'Koh Rong', date: '2026-09-03', time: '12:00', price: 0, rating: 4.6, attendees: 1700, details: 'A seafood and street food festival on the beach, celebrating local chefs, cocktails and sunset dining. FREE EVENT!', organizer: 'SeaTaste', banner: 'image/smile-of-angkor-show.jpg', gallery: ['https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'], tags: ['Food Fair', 'Beach', 'Local'] },
+    { id: 'e3', name: 'StartUp Company idea', category: 'Food Fair', location: 'Koh Rong', date: '2026-09-03', time: '12:00', price: 0, rating: 4.6, attendees: 1700, details: 'A seafood and street food festival on the beach, celebrating local chefs, cocktails and sunset dining. FREE EVENT!', organizer: 'SeaTaste', banner: 'image/smile-of-angkor-show.jpg', gallery: ['https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'], tags: ['Food Fair', 'Beach', 'Local'] },
     { id: 'e4', name: 'Battambang Startup Meetup', category: 'Startup Event', location: 'Battambang', date: '2026-07-24', time: '10:00', price: 0, rating: 4.4, attendees: 820, details: 'A founder-focused meetup with panels, networking and local innovation showcases. FREE EVENT!', organizer: 'Cambodia Founders', banner: 'image/Lantern-boats-dazzle-for-Water-Festival-in-Phnom-Penh.jpg', gallery: ['https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80', 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80', 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80'], tags: ['Startup', 'Networking', 'Business'] },
     { id: 'e5', name: 'Mondulkiri Eco Adventure', category: 'Sports', location: 'Mondulkiri', date: '2026-08-18', time: '07:00', price: 40, rating: 4.7, attendees: 940, details: 'Guided trail runs, waterfall hikes, and elephant sanctuary tours in Cambodia’s wild eastern province.', organizer: 'Wild Way', banner: 'image/SmileofAngkorinSiemReap.jpg', gallery: ['https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&q=80', 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&q=80', 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&q=80'], tags: ['Sports', 'Adventure', 'Nature'] },
     { id: 'e6', name: 'Battambang Film & Culture', category: 'Cultural Event', location: 'Battambang', date: '2026-07-29', time: '19:00', price: 22, rating: 4.5, attendees: 1100, details: 'An intimate film screening and discussion led by leading Cambodian filmmakers and storytellers.', organizer: 'ArtHouse', banner: 'image/smile-of-angkor-show.jpg', gallery: ['https://images.unsplash.com/photo-1478720568477-152d9e3287f0?w=400&q=80', 'https://images.unsplash.com/photo-1478720568477-152d9e3287f0?w=400&q=80', 'https://images.unsplash.com/photo-1478720568477-152d9e3287f0?w=400&q=80'], tags: ['Cultural', 'Film', 'Art'] },
@@ -18,7 +18,7 @@ const siteData = {
     { id: 'a6', name: 'Battambang Art Trail', region: 'Battambang', rating: 4.5, description: 'A creative tour of galleries, suspension bridge views and riverside street art.', nearby: ['Battambang Film & Culture', 'Battambang Startup Meetup'] }
   ],
   travelers: [
-    { name: 'Sophea', city: 'Phnom Penh', review: 'CamEvent Explorer helped me find surprising local shows and food markets in one page.', rating: 5 },
+    { name: 'Sophea', city: 'Phnom Penh', review: 'EventHub Explorer helped me find surprising local shows and food markets in one page.', rating: 5 },
     { name: 'Tom', city: 'London', review: 'The event recommendations were polished and felt like a real product pitch.', rating: 4.8 },
     { name: 'Maly', city: 'Siem Reap', review: 'I booked a premium concert and cultural tour from the same platform instantly.', rating: 4.9 }
   ],
@@ -28,7 +28,7 @@ const siteData = {
     { id: 'u3', name: 'Ari', email: 'ari@camadmin.com', role: 'admin' }
   ],
   bookings: [
-    { id: 'b1', eventId: 'e2', name: 'Sok', quantity: 2, type: 'VIP', total: 110, ticketNumber: 'CAM-4937', status: 'Confirmed' }
+    { id: 'b1', eventId: 'e2', name: 'Sok', quantity: 2, type: 'VIP', total: 110, ticketNumber: 'EH-4937', status: 'Confirmed' }
   ],
   savedEvents: ['e3', 'e6'],
   savedAttractions: ['a1', 'a4'],
@@ -645,7 +645,7 @@ function renderBooking() {
     const type = typeSelect.value;
     const multiplier = type === 'VIP' ? 1.6 : 1;
     const totalValue = quantity * event.price * multiplier;
-    const ticketNumber = `CAM-${Math.floor(Math.random() * 9000) + 1000}`;
+    const ticketNumber = `EH-${Math.floor(Math.random() * 9000) + 1000}`;
     resultPanel.innerHTML = `
       <div class="booking-success">
         <h2>Booking Successful</h2>
@@ -837,11 +837,11 @@ window.addEventListener('keydown', (event) => {
 function generateICS(eventObj) {
   // Basic .ics file content
   const startDate = (eventObj.date || '').replace(/-/g, '') + 'T' + (eventObj.time || '00:00').replace(':','') + '00';
-  const uid = `cam-${eventObj.id}-${Date.now()}`;
+  const uid = `eh-${eventObj.id}-${Date.now()}`;
   const ics = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//CamEvent Explorer//EN',
+    'PRODID:-//EventHub Explorer//EN',
     'BEGIN:VEVENT',
     `UID:${uid}`,
     `DTSTAMP:${startDate}`,
@@ -996,7 +996,7 @@ function makeMockEvent() {
   const name = names[Math.floor(Math.random() * names.length)];
   const date = new Date(Date.now() + Math.floor(Math.random()*10+1)*24*3600*1000);
   const isoDate = date.toISOString().split('T')[0];
-  return { id, name: `${name} (${loc})`, category: 'Live', location: loc, date: isoDate, time: '18:00', price: 0, rating: 4.3, attendees: 0, details: 'This is a live-simulated event for demonstration purposes.', organizer: 'CamEvent Live', banner: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80', 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80'], tags: ['Live','Featured'], _simulated: true };
+  return { id, name: `${name} (${loc})`, category: 'Live', location: loc, date: isoDate, time: '18:00', price: 0, rating: 4.3, attendees: 0, details: 'This is a live-simulated event for demonstration purposes.', organizer: 'EventHub Live', banner: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80', 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80'], tags: ['Live','Featured'], _simulated: true };
 }
 
 // Persist simulated events separately so demo history survives reloads
