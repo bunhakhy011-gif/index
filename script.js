@@ -1,13 +1,13 @@
 const siteData = {
   events: [
-    { id: 'e1', name: 'Phnom Penh Night Festival', category: 'Festival', location: 'Phnom Penh', date: '2026-07-08', time: '18:00', price: 25, rating: 4.8, attendees: 3200, details: 'A vibrant open-air event with live performances, street food, and cultural showcases in the heart of Phnom Penh.', organizer: 'City Stages', banner: 'linear-gradient(135deg, rgba(15,118,110,0.8), rgba(20,184,166,0.4))', gallery: ['#0f766e', '#14b8a6', '#f59e0b'], tags: ['Festival', 'Cultural', 'Food'] },
+    { id: 'e1', name: 'Phnom Penh Night Festival', category: 'Festival', location: 'Phnom Penh', date: '2026-07-08', time: '18:00', price: 25, rating: 4.8, attendees: 3200, details: 'A vibrant open-air event with live performances, street food, and cultural showcases in the heart of Phnom Penh.', organizer: 'City Stages', banner: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1555939594-58d7cb561404?w=400&q=80', 'https://images.unsplash.com/photo-1555939594-58d7cb561404?w=400&q=80', 'https://images.unsplash.com/photo-1555939594-58d7cb561404?w=400&q=80'], tags: ['Festival', 'Cultural', 'Food'] },
     { id: 'e2', name: 'Angkor Sound Concert', category: 'Concert', location: 'Siem Reap', date: '2026-08-12', time: '20:00', price: 55, rating: 4.9, attendees: 2200, details: 'A premium outdoor concert featuring Cambodia’s top artists and a cinematic light show near Angkor Wat.', organizer: 'Temple Nights', banner: 'linear-gradient(135deg, rgba(245,158,11,0.85), rgba(248,208,92,0.35))', gallery: ['#f59e0b', '#fbbf24', '#0f766e'], tags: ['Concert', 'Luxury', 'Music'] },
-    { id: 'e3', name: 'Koh Rong Food Fair', category: 'Food Fair', location: 'Koh Rong', date: '2026-09-03', time: '12:00', price: 18, rating: 4.6, attendees: 1700, details: 'A seafood and street food festival on the beach, celebrating local chefs, cocktails and sunset dining.', organizer: 'SeaTaste', banner: 'linear-gradient(135deg, rgba(20,184,166,0.85), rgba(15,118,110,0.3))', gallery: ['#14b8a6', '#0f766e', '#0ea5e9'], tags: ['Food Fair', 'Beach', 'Local'] },
-    { id: 'e4', name: 'Battambang Startup Meetup', category: 'Startup Event', location: 'Battambang', date: '2026-07-24', time: '10:00', price: 15, rating: 4.4, attendees: 820, details: 'A founder-focused meetup with panels, networking and local innovation showcases.', organizer: 'Cambodia Founders', banner: 'linear-gradient(135deg, rgba(15,118,110,0.8), rgba(248,208,92,0.2))', gallery: ['#14b8a6', '#f59e0b', '#0f766e'], tags: ['Startup', 'Networking', 'Business'] },
+    { id: 'e3', name: 'Koh Rong Food Fair', category: 'Food Fair', location: 'Koh Rong', date: '2026-09-03', time: '12:00', price: 18, rating: 4.6, attendees: 1700, details: 'A seafood and street food festival on the beach, celebrating local chefs, cocktails and sunset dining.', organizer: 'SeaTaste', banner: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'], tags: ['Food Fair', 'Beach', 'Local'] },
+    { id: 'e4', name: 'Battambang Startup Meetup', category: 'Startup Event', location: 'Battambang', date: '2026-07-24', time: '10:00', price: 15, rating: 4.4, attendees: 820, details: 'A founder-focused meetup with panels, networking and local innovation showcases.', organizer: 'Cambodia Founders', banner: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80', 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80', 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80'], tags: ['Startup', 'Networking', 'Business'] },
     { id: 'e5', name: 'Mondulkiri Eco Adventure', category: 'Sports', location: 'Mondulkiri', date: '2026-08-18', time: '07:00', price: 40, rating: 4.7, attendees: 940, details: 'Guided trail runs, waterfall hikes, and elephant sanctuary tours in Cambodia’s wild eastern province.', organizer: 'Wild Way', banner: 'linear-gradient(135deg, rgba(15,118,110,0.7), rgba(245,158,11,0.35))', gallery: ['#0f766e', '#f59e0b', '#a3e635'], tags: ['Sports', 'Adventure', 'Nature'] },
-    { id: 'e6', name: 'Battambang Film & Culture', category: 'Cultural Event', location: 'Battambang', date: '2026-07-29', time: '19:00', price: 22, rating: 4.5, attendees: 1100, details: 'An intimate film screening and discussion led by leading Cambodian filmmakers and storytellers.', organizer: 'ArtHouse', banner: 'linear-gradient(135deg, rgba(15,118,110,0.75), rgba(248,208,92,0.28))', gallery: ['#0f766e', '#f59e0b', '#a78bfa'], tags: ['Cultural', 'Film', 'Art'] },
-    { id: 'e7', name: 'Kampot Pepper Supper Club', category: 'Food Fair', location: 'Kampot', date: '2026-08-05', time: '18:30', price: 30, rating: 4.8, attendees: 740, details: 'A tasting event celebrating Kampot pepper cuisine, riverside dining and chef storytelling.', organizer: 'Supper Club', banner: 'linear-gradient(135deg, rgba(245,158,11,0.9), rgba(255,255,255,0.22))', gallery: ['#f59e0b', '#0f766e', '#14b8a6'], tags: ['Food Fair', 'Gourmet', 'Local'] },
-    { id: 'e8', name: 'Phnom Penh Startup Carnival', category: 'Startup Event', location: 'Phnom Penh', date: '2026-09-11', time: '09:00', price: 20, rating: 4.5, attendees: 1300, details: 'A startup showcase, pitch stage and investor lounge for regional founders and digital creators.', organizer: 'LaunchHub', banner: 'linear-gradient(135deg, rgba(20,184,166,0.8), rgba(15,118,110,0.3))', gallery: ['#0f766e', '#14b8a6', '#f59e0b'], tags: ['Startup', 'Festival', 'Tech'] }
+    { id: 'e6', name: 'Battambang Film & Culture', category: 'Cultural Event', location: 'Battambang', date: '2026-07-29', time: '19:00', price: 22, rating: 4.5, attendees: 1100, details: 'An intimate film screening and discussion led by leading Cambodian filmmakers and storytellers.', organizer: 'ArtHouse', banner: 'https://images.unsplash.com/photo-1478720568477-152d9e3287f0?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1478720568477-152d9e3287f0?w=400&q=80', 'https://images.unsplash.com/photo-1478720568477-152d9e3287f0?w=400&q=80', 'https://images.unsplash.com/photo-1478720568477-152d9e3287f0?w=400&q=80'], tags: ['Cultural', 'Film', 'Art'] },
+    { id: 'e7', name: 'Kampot Pepper Supper Club', category: 'Food Fair', location: 'Kampot', date: '2026-08-05', time: '18:30', price: 30, rating: 4.8, attendees: 740, details: 'A tasting event celebrating Kampot pepper cuisine, riverside dining and chef storytelling.', organizer: 'Supper Club', banner: 'https://images.unsplash.com/photo-1504674900967-a694f68d3c7d?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1504674900967-a694f68d3c7d?w=400&q=80', 'https://images.unsplash.com/photo-1504674900967-a694f68d3c7d?w=400&q=80', 'https://images.unsplash.com/photo-1504674900967-a694f68d3c7d?w=400&q=80'], tags: ['Food Fair', 'Gourmet', 'Local'] },
+    { id: 'e8', name: 'Phnom Penh Startup Carnival', category: 'Startup Event', location: 'Phnom Penh', date: '2026-09-11', time: '09:00', price: 20, rating: 4.5, attendees: 1300, details: 'A startup showcase, pitch stage and investor lounge for regional founders and digital creators.', organizer: 'LaunchHub', banner: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80', 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80', 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80'], tags: ['Startup', 'Festival', 'Tech'] }
   ],
   attractions: [
     { id: 'a1', name: 'Angkor Wat Sunrise Tour', region: 'Siem Reap', rating: 4.9, description: 'A premium guided dawn visit to the temples with cultural narration and local breakfast.', nearby: ['Angkor Sound Concert', 'Phnom Penh Night Festival'] },
@@ -299,7 +299,7 @@ function renderFeaturedEvents() {
     const active = state.savedEvents.includes(event.id) ? 'active' : '';
     return `
       <article class="event-card">
-        <div class="card-hero overlay" style="background: ${event.banner};">
+        <div class="card-hero overlay" style="background-image: url('${event.banner}'); background-size: cover; background-position: center;">
           <span>${event.category}</span>
         </div>
         <div class="card-body">
@@ -518,7 +518,7 @@ function renderEvents() {
     if (sort === 'date') events.sort((a,b) => new Date(a.date) - new Date(b.date));
     results.innerHTML = events.map(event => `
       <article class="event-card">
-        <div class="card-hero overlay" style="background: ${event.banner};"></div>
+        <div class="card-hero overlay" style="background-image: url('${event.banner}'); background-size: cover; background-position: center;"></div>
         <div class="card-body">
           <h3 class="card-title">${event.name}</h3>
           <div class="tag-grid">${event.tags.map(tag => `<span class="tag-pill">${tag}</span>`).join('')}</div>
@@ -552,7 +552,7 @@ function renderEventDetails() {
   const saveBtn = document.querySelector('#saveEventBtn');
 
   if (!event || !banner) return;
-  banner.style.background = event.banner;
+  banner.style.backgroundImage = `url('${event.banner}')`; banner.style.backgroundSize = 'cover'; banner.style.backgroundPosition = 'center';
   title.textContent = event.name;
   meta.innerHTML = `
     <span>Date: <strong>${event.date}</strong></span>
@@ -579,13 +579,13 @@ function renderEventDetails() {
       <p>${item.label}</p>
     </div>
   `).join('');
-  gallery.innerHTML = event.gallery.map((color, index) => `
-    <div class="gallery-tile" style="background: ${color};">
-      <button type="button" data-color="${color}" class="gallery-open"></button>
+  gallery.innerHTML = event.gallery.map((imageUrl, index) => `
+    <div class="gallery-tile" style="background-image: url('${imageUrl}'); background-size: cover; background-position: center;">
+      <button type="button" data-image="${imageUrl}" class="gallery-open"></button>
     </div>
   `).join('');
   document.querySelectorAll('.gallery-open').forEach(button => {
-    button.addEventListener('click', () => openModal(button.dataset.color));
+    button.addEventListener('click', () => openModal(button.dataset.image));
   });
   related.innerHTML = siteData.events.filter(item => item.id !== event.id).slice(0, 3).map(item => `
     <article class="related-card glass-card">
@@ -596,10 +596,12 @@ function renderEventDetails() {
   `).join('');
 }
 
-function openModal(color) {
+function openModal(imageUrl) {
   const modal = document.querySelector('#galleryModal');
   const modalContent = modal.querySelector('.modal-content');
-  modalContent.style.background = color;
+  modalContent.style.backgroundImage = `url('${imageUrl}')`;
+  modalContent.style.backgroundSize = 'cover';
+  modalContent.style.backgroundPosition = 'center';
   modal.classList.add('open');
 }
 
@@ -664,7 +666,7 @@ function renderAttractions() {
   if (!container) return;
   container.innerHTML = siteData.attractions.map(item => `
     <article class="attraction-card">
-      <div class="card-hero overlay" style="background: linear-gradient(135deg, rgba(15,118,110,0.85), rgba(20,184,166,0.3));"></div>
+      <div class="card-hero overlay" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80'); background-size: cover; background-position: center;"></div>
       <div class="card-body">
         <h3 class="card-title">${item.name}</h3>
         <div class="card-meta"><span>${item.region}</span><span>${item.rating} ★</span></div>
@@ -953,7 +955,7 @@ function renderUpcomingEvents() {
   const upcoming = siteData.events.slice().sort((a,b) => new Date(a.date) - new Date(b.date)).slice(0,6);
   container.innerHTML = upcoming.map(e => `
     <article class="event-card">
-      <div class="card-hero overlay" style="background: ${e.banner};"></div>
+      <div class="card-hero overlay" style="background-image: url('${e.banner}'); background-size: cover; background-position: center;"></div>
       <div class="card-body">
         <h3 class="card-title">${e.name}</h3>
         <div class="card-meta"><span>${e.date}</span><span>${e.location}</span></div>
@@ -994,7 +996,7 @@ function makeMockEvent() {
   const name = names[Math.floor(Math.random() * names.length)];
   const date = new Date(Date.now() + Math.floor(Math.random()*10+1)*24*3600*1000);
   const isoDate = date.toISOString().split('T')[0];
-  return { id, name: `${name} (${loc})`, category: 'Live', location: loc, date: isoDate, time: '18:00', price: 0, rating: 4.3, attendees: 0, details: 'This is a live-simulated event for demonstration purposes.', organizer: 'CamEvent Live', banner: 'linear-gradient(135deg, rgba(15,118,110,0.8), rgba(20,184,166,0.4))', gallery: [], tags: ['Live','Featured'], _simulated: true };
+  return { id, name: `${name} (${loc})`, category: 'Live', location: loc, date: isoDate, time: '18:00', price: 0, rating: 4.3, attendees: 0, details: 'This is a live-simulated event for demonstration purposes.', organizer: 'CamEvent Live', banner: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80', gallery: ['https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80', 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80'], tags: ['Live','Featured'], _simulated: true };
 }
 
 // Persist simulated events separately so demo history survives reloads

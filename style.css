@@ -257,9 +257,9 @@ body.dark-mode .hero-card {
   inset: 0;
   background: linear-gradient(180deg, rgba(15, 118, 110, 0.18), rgba(248, 250, 252, 0.8));
 }
-.slide-1 { background-image: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(20, 184, 166, 0.72)); }
-.slide-2 { background-image: linear-gradient(135deg, rgba(245, 158, 11, 0.9), rgba(251, 191, 36, 0.68)); }
-.slide-3 { background-image: linear-gradient(135deg, rgba(15, 118, 110, 0.55), rgba(248, 250, 252, 0.7)); }
+.slide-1 { background-image: linear-gradient(135deg, rgba(15, 118, 110, 0.65), rgba(20, 184, 166, 0.45)), url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1400&q=80'); background-size: cover; background-position: center; }
+.slide-2 { background-image: linear-gradient(135deg, rgba(245, 158, 11, 0.65), rgba(251, 191, 36, 0.45)), url('https://images.unsplash.com/photo-1599930113854-d617d0c6171e?w=1400&q=80'); background-size: cover; background-position: center; }
+.slide-3 { background-image: linear-gradient(135deg, rgba(15, 118, 110, 0.55), rgba(248, 250, 252, 0.4)), url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1400&q=80'); background-size: cover; background-position: center; }
 .hero-visual-content {
   position: relative;
   z-index: 1;
