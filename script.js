@@ -621,17 +621,17 @@ function renderBooking() {
   const quantityInput = document.querySelector('#ticketQuantity');
   const priceText = document.querySelector('#ticketPrice');
 
-  priceText.textContent = `$${event.price}`;
+  priceText.textContent = event.price === 0 ? 'FREE' : `$${event.price}`;
   summary.innerHTML = `
     <h3>${event.name}</h3>
     <p class="body-small">${event.location} • ${event.date} • ${event.time}</p>
-    <div class="summary-row"><span>Ticket</span><strong>$${event.price}</strong></div>
+    <div class="summary-row"><span>Ticket</span><strong>${event.price === 0 ? 'FREE' : '$' + event.price}</strong></div>
   `;
   const updateTotal = () => {
     const qty = Number(quantityInput.value) || 1;
     const multiplier = typeSelect.value === 'VIP' ? 1.6 : 1;
-    const totalValue = qty * event.price * multiplier;
-    total.textContent = `$${totalValue.toFixed(2)}`;
+    const totalValue = event.price === 0 ? 0 : qty * event.price * multiplier;
+    total.textContent = event.price === 0 ? 'FREE' : `$${totalValue.toFixed(2)}`;
   };
   updateTotal();
   typeSelect?.addEventListener('change', updateTotal);
@@ -651,7 +651,7 @@ function renderBooking() {
         <h2>Booking Successful</h2>
         <p>Your ticket is confirmed for ${event.name}.</p>
         <div class="qr-code">QR CODE<br><strong>${ticketNumber}</strong></div>
-        <p class="body-small">Name: ${name}<br>Email: ${email}<br>Type: ${type} • Quantity: ${quantity}<br>Total: $${totalValue.toFixed(2)}</p>
+        <p class="body-small">Name: ${name}<br>Email: ${email}<br>Type: ${type} • Quantity: ${quantity}<br>Total: ${event.price === 0 ? 'FREE' : '$' + totalValue.toFixed(2)}</p>
       </div>
     `;
     showToast('Booking success', 'Your fake ticket has been generated.');
